@@ -4,25 +4,27 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import feedbackRoutes from "./routes/feedbackRoutes.js";
-import mongoose from "mongoose";
+
 dotenv.config();
+
+// ✅ Connect MongoDB (handled in config/db.js)
 connectDB();
 
 const app = express();
 
+// ✅ Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// ✅ Routes
 app.use("/api/users", userRoutes);
-app.use("/api/habits", feedbackRoutes);
+app.use("/api/feedback", feedbackRoutes);
 
+// ✅ Root route
 app.get("/", (req, res) => {
-  res.send("🌿 Personal Growth Tracker API is running...");
+  res.send("🌿 Personal Growth Tracker API is running successfully...");
 });
-mongoose.connect(process.env."mongodb+srv://janat:i-am-brave@cluster0.douqbte.mongodb.net/mernDB", { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
 
+// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
