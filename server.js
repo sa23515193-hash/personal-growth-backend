@@ -7,7 +7,7 @@ import feedbackRoutes from "./routes/feedbackRoutes.js";
 import mongoose from "mongoose";
 dotenv.config();
 connectDB();
-const app =mongoose();
+
 const app = express();
 
 app.use(cors());
